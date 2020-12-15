@@ -2,12 +2,17 @@ float b1, b2, b3, b4;
 float b5, b6, b7, b8;
 float displayx, displayy, xdisplayWidth, ydisplayHeight;
 float rx, ry, rxx, ryy;
-Boolean recton=false, recton2=false
+Boolean recton=false, recton2=false;
+color green=#03FF11, red=#FF033E, purple=#B200A6;
 
 
 
 
-void setup()  {}
+void setup()  {
+
+
+
+}
 
 
 
@@ -20,7 +25,7 @@ void draw() {
   rect(b5, b6, b7, b8);
   textDraw2();
   if (recton == true && recton2 == false) rect(displayx, displayy, xdisplayWidth, ydisplayHeight);
-  if (recton2 == true && recton == false) ellipse(rx, ry, rxx, ryy;);
+  if (recton2 == true && recton == false) ellipse(rx, ry, rxx, ryy);
 }//End draw()
 
 void mousePressed() {
