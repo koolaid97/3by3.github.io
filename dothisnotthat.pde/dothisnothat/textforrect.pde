@@ -1,14 +1,15 @@
 String b1text= "u better pick me:(";
 String b2text= "don't click depression";
 PFont titleFont;
+color purple=#E510D8;
 
 
-void textSetup() { //To Main Program
+void textSetup() { 
  
   println("Start of Console");
  
   titleFont = createFont ("Impact", 55); 
-}//End textSetup
+}
 
 void textDrawPre() {   
   fill(purple); 
@@ -17,13 +18,13 @@ void textDrawPre() {
   textFont(titleFont, 25); //Change the number until it fits, largest font size
 }//End textDrawPre
 
-void textDraw1() { //To Main Program
+void textDraw1() {
   textDrawPre();
-  text(b1, b2, b3, b4);
-  fill(255); //Reset to white for rest of the program
-}//End textDraw1
+  text(b1text, b1, b2, b3, b4);
+  fill(25); 
+}
 
-void textDraw2() { //To Main Program
+void textDraw2() { 
   textDrawPre();
   text(b2text, b5, b6, b7, b8);
-  fill(255); }
+  fill(25); }
