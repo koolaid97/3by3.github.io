@@ -32,6 +32,22 @@ void draw() {
 
   if (recton == true && recton2 == false) rect(displayx, displayy, xdisplayWidth, ydisplayHeight);
   if (recton == false && recton2 == true) rect(rx, ry, rxx, ryy);
+  
+  
+  
+  
+  //
+   fill(purple); 
+  textAlign (CENTER, CENTER); //Align X&Y, see Processing.org / Reference
+   titleFont = createFont ("Impact", 20); 
+  textFont(titleFont); //Change the number until it fits, largest font size
+text(b1text, b1, b2, b3, b4);
+fill(255);
+//
+
+  textDrawPre();
+  text(b2text, b5, b6, b7, b8);
+  fill(255); 
 }//End draw()
 
 void mousePressed() {

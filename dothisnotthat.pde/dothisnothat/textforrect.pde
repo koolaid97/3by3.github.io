@@ -8,7 +8,7 @@ void textSetup() {
  
   println("Start of Console");
  
-  titleFont = createFont ("Impact", 55); 
+  titleFont = createFont ("Impact", 20); 
 }
 
 void textDrawPre() {   
@@ -19,12 +19,17 @@ void textDrawPre() {
 }//End textDrawPre
 
 void textDraw1() {
-  textDrawPre();
-  text(b1text, b1, b2, b3, b4);
-  fill(25); 
+  
+ fill(purple); 
+  textAlign (CENTER, CENTER); //Align X&Y, see Processing.org / Reference
+   titleFont = createFont ("Impact", 20); 
+  textFont(titleFont); //Change the number until it fits, largest font size
+text(b1text, b1, b2, b3, b4);
+fill(255);
+  
 }
 
 void textDraw2() { 
   textDrawPre();
   text(b2text, b5, b6, b7, b8);
-  fill(25); }
+  fill(255); }
