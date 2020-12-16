@@ -13,12 +13,12 @@ xdisplayWidth= width*1/6;
 ydisplayHeight= height*1/8;
  rx = width*6/8;
   ry = height*1/8;
-  rxx = width*1/8;
-  ryy = height*1/8;
+  rDiameter = width*1/8;
+  
 
 
 
-rect(rx, ry, rxx, ryy);
+ellipse(rx, ry, rDiameter, rDiameter);
 rect(b1, b2, b3, b4);
 rect(displayx, displayy, xdisplayWidth, ydisplayHeight);
 rect(b5, b6, b7, b8);

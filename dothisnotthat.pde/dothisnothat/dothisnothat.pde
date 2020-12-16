@@ -1,7 +1,7 @@
 float b1, b2, b3, b4;
 float b5, b6, b7, b8;
 float displayx, displayy, xdisplayWidth, ydisplayHeight;
-float rx, ry, rxx, ryy;
+float rx, ry, rDiameter;
 Boolean recton=false, recton2=false;
 color green=#03FF11, red=#FF033E, black=#030002;
 float reset;
@@ -31,7 +31,7 @@ void draw() {
   rect(b5, b6, b7, b8);
 
   if (recton == true && recton2 == false) rect(displayx, displayy, xdisplayWidth, ydisplayHeight);
-  if (recton == false && recton2 == true) rect(rx, ry, rxx, ryy);
+  if (recton == false && recton2 == true) ellipse(rx, ry, rDiameter, rDiameter);
   
   
   
