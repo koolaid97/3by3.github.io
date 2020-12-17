@@ -1,4 +1,7 @@
-color green = #10FF05, white=255, black=0, blue=#0805FF, reset;
+color green = #10FF05, buttonColor, white=255, black=0, blue=#0805FF, red=#FF2B05, reset, resetWhite;
+float tX, tY, Tside, TSIDE;
+String title = "koolaid97";
+PFont titleFont;
 float ptDiameter, rectWidth, rectHeight;
 float p1X, p1Y, p2X, p2Y, p3X, p3Y, p4X, p4Y;
 float p5X, p5Y, p6X, p6Y, p7X, p7Y, p8X, p8Y;
@@ -16,6 +19,7 @@ PImage pic1, pic2;
 float rectXPic1, rectYPic1, rectWidthPic1, rectHeightPic1;
 float picImageWidthRatio1, picImageHeightRatio1;
 float picX1, picY1, picWidth1, picHeight1;
+
 void setup() {
   fullScreen();
   pic1 = loadImage( "tmnt-computeranimated-2012.jpg");
@@ -67,6 +71,11 @@ void setup() {
   mouthY2 = mouthY1;
   mouthThick = height*1/40;
   //
+  tX = width*10/15;
+  tY = height*10/15;
+  Tside = width*1/3;
+  TSIDE = height * 3/15;
+  //
 
 
   picImageWidthRatio1 = 700.0/700.0; //Image width is longer, thus 1
@@ -94,11 +103,11 @@ void draw() {
   rect(p9X, p9Y, rectWidth, rectHeight);
   rect(p10X, p10Y, rectWidth, rectHeight);
   rect(p11X, p11Y, rectWidth, rectHeight);
+
   //
   fill(black);
   rect(b1X, b1Y, b1Width, b1Height);
   rect(b2X, b2Y, b2Width, b2Height);
-  rect(b3X, b3Y, b3Width, b3Height);
   rect(quitx, quity, quitwidth, quitheight);
   //
   fill(blue);
@@ -121,15 +130,24 @@ void draw() {
   ellipse(p15X, p15Y, ptDiameter, ptDiameter);
   ellipse(p16X, p16Y, ptDiameter, ptDiameter);
   fill(white);
-
+  ellipse(b4x, b4y, b4d, b4d);
   //
 
-  ellipse(b4x, b4y, b4d, b4d);
-
+  if (mouseX>quitx && mouseX<quitx+quitwidth && mouseY>quity && mouseY<quity+quitheight) {
+    buttonColor= red;
+  } else { 
+    buttonColor=black;
+  }
+{  
+  fill(buttonColor);
+  rect(quitx, quity, quitwidth, quitheight);
+  fill(resetWhite);  
+}
   if (r2on == true)
   {
     fill(green); 
     ellipse(r21, r22, r23, r23); 
+    ellipse(b4x, b4y, b4d, b4d);
     line(mouthX1, mouthY1, mouthX2, mouthY2);
     fill(reset);
   }
@@ -137,6 +155,21 @@ void draw() {
   if (r3on == true)
   {
     image(pic1, picX1, picY1, picWidth1, picHeight1);
+  }
+  //
+  if (r4on ==true)
+  {
+    fill(green);
+    rect(p11X, p11Y, rectWidth, rectHeight);
+    fill(reset);
+    fill(black);
+    rect(b3X, b3Y, b3Width, b3Height);
+    fill(reset);
+    fill(blue); //reset
+    titleFont = createFont ("Impact", 55);
+    textFont(titleFont);
+    text(title, tX, tY, Tside, TSIDE);
+    textAlign (CENTER, CENTER);
   }
 
   if ( mouseX>=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height) {
@@ -154,16 +187,34 @@ void draw() {
     fill(black);
     ellipse(b4x, b4y, b4d, b4d);
   }
+  //
+  if ( mouseX>=b2X && mouseX<=b2X+b2Width && mouseY>=b2Y && mouseY<=b2Y+b2Height) {
+    fill(blue);
+    rect(b2X, b2Y, b2Width, b2Height);
+  } else {
+    fill(black);
+    rect(b2X, b2Y, b2Width, b2Height);
+  }
 }
 
 void mousePressed() {
   r2on=false;
   r3on=false;
+  r4on=false;
+  if (mouseX>quitx && mouseX<quitx+quitwidth && mouseY>quity && mouseY<quity+quitheight) exit();
+  //
   if (mouseX >=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height) {
     r2on = true;
   }
   //
   if ( mouseX>=b4x && mouseX<=b4x+b4d && mouseY>=b4y && mouseY<=b4y+b4d) {
-    r3on=true; r2on=true;
+    r3on=true; 
+    r2on=true;
+  }
+  //
+  if ( mouseX>=b2X && mouseX<=b2X+b2Width && mouseY>=b2Y && mouseY<=b2Y+b2Height) {
+    r2on=true;
+    r3on=true;
+    r4on=true;
   }
 }
