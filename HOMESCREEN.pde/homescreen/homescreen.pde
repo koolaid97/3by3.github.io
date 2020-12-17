@@ -1,4 +1,4 @@
-color green = #10FF05, white=255, black=0, blue=#0805FF;
+color green = #10FF05, white=255, black=0, blue=#0805FF, reset;
 float ptDiameter, rectWidth, rectHeight;
 float p1X, p1Y, p2X, p2Y, p3X, p3Y, p4X, p4Y;
 float p5X, p5Y, p6X, p6Y, p7X, p7Y, p8X, p8Y;
@@ -8,11 +8,17 @@ float b1X, b1Y, b1Width, b1Height;
 float b2X, b2Y, b2Width, b2Height;
 float b3X, b3Y, b3Width, b3Height;
 float quitx, quity, quitheight, quitwidth;
+float mouthThick, mouthX1, mouthY1, mouthX2, mouthY2;
 boolean r2on=false, r3on=false, r4on = false;
 float r21, r22, r23;
 float b4x, b4y, b4d;
+PImage pic1, pic2;
+float rectXPic1, rectYPic1, rectWidthPic1, rectHeightPic1;
+float picImageWidthRatio1, picImageHeightRatio1;
+float picX1, picY1, picWidth1, picHeight1;
 void setup() {
   fullScreen();
+  pic1 = loadImage( "tmnt-computeranimated-2012.jpg");
   ptDiameter = width * 1 / 30;
   rectWidth = width*1/3;
   rectHeight = height*1/3;
@@ -46,18 +52,36 @@ void setup() {
   quity= height*0;
   quitwidth= width*1/12;
   quitheight= height*1/16;
-  
+
   r21= width*16/36;
   r22= height *27/36;
   r23= width *2/36;
-  //
-  
 
-  
-  
+  b4x= width*20/36;
+  b4y= height *27/36;
+  b4d= width *2/36;
+  //
+  mouthX1 = width*1/2.6;
+  mouthY1 = height*4/4.3;
+  mouthX2 = width*1/1.6;
+  mouthY2 = mouthY1;
+  mouthThick = height*1/40;
+  //
+
+
+  picImageWidthRatio1 = 700.0/700.0; //Image width is longer, thus 1
+  picImageHeightRatio1 = 275.0/700.0; //Image height is shorter, thus <1
+  picX1 = p6X;
+  picY1 = p6Y;
+  picWidth1 = rectWidth * picImageWidthRatio1; //remains longer side, "*1"
+  picHeight1 = picWidth1 * picImageHeightRatio1; //becomes shorter side, "*<1"
+  if (picHeight1 > rectHeight) println("Image #1 display issues"); //dimension might be 'cut-off'
+
+  //
 }
 
 void draw() {
+  println(r2on);
   fill(white);
   rect(p1X, p1Y, rectWidth, rectHeight);
   rect(p2X, p2Y, rectWidth, rectHeight);
@@ -97,29 +121,49 @@ void draw() {
   ellipse(p15X, p15Y, ptDiameter, ptDiameter);
   ellipse(p16X, p16Y, ptDiameter, ptDiameter);
   fill(white);
+
   //
- 
+
   ellipse(b4x, b4y, b4d, b4d);
-  
-    if(r2on == true); 
-    ellipse(r21, r22, r23, r23);
-  fill(green);
+
+  if (r2on == true)
+  {
+    fill(green); 
+    ellipse(r21, r22, r23, r23); 
+    line(mouthX1, mouthY1, mouthX2, mouthY2);
+    fill(reset);
+  }
   //
-        
+  if (r3on == true)
+  {
+    image(pic1, picX1, picY1, picWidth1, picHeight1);
+  }
+
   if ( mouseX>=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height) {
     fill(blue);
     rect(b1X, b1Y, b1Width, b1Height);
   } else {
     fill(black);
-    rect(b1X, b1Y, b1Width, b1Height); }
-  
- 
+    rect(b1X, b1Y, b1Width, b1Height);
+  }
+  //
+  if ( mouseX>=b4x && mouseX<=b4x+b4d && mouseY>=b4y && mouseY<=b4y+b4d) {
+    fill(blue);
+    ellipse(b4x, b4y, b4d, b4d);
+  } else {
+    fill(black);
+    ellipse(b4x, b4y, b4d, b4d);
+  }
 }
 
 void mousePressed() {
   r2on=false;
-  
-  if (mouseX >=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height); 
-r2on = true;
-  
+  r3on=false;
+  if (mouseX >=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height) {
+    r2on = true;
+  }
+  //
+  if ( mouseX>=b4x && mouseX<=b4x+b4d && mouseY>=b4y && mouseY<=b4y+b4d) {
+    r3on=true; r2on=true;
+  }
 }
