@@ -98,10 +98,11 @@ void draw() {
   ellipse(p16X, p16Y, ptDiameter, ptDiameter);
   fill(white);
   //
-  ellipse(r21, r22, r23, r23);
+ 
   ellipse(b4x, b4y, b4d, b4d);
   
-    if(r2on == true) ellipse(r21, r22, r23, r23);
+    if(r2on == true); 
+    ellipse(r21, r22, r23, r23);
   fill(green);
   //
         
@@ -118,7 +119,7 @@ void draw() {
 void mousePressed() {
   r2on=false;
   
-  if (mouseX >=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height) 
+  if (mouseX >=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height); 
 r2on = true;
   
 }
