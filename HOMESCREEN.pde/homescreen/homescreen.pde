@@ -238,7 +238,7 @@ void draw() {
   if (r7on == true)
   {    
     fill(blue);
-    rect(p11X, p11Y, rectWidth, rectHeight);
+    rect(p5X, p5Y, rectWidth, rectHeight);
     fill(reset);
     fill(black);
     fill(reset);
@@ -288,7 +288,7 @@ void draw() {
     rect(b5X, b5Y, b5W, b5H);
   }
   //
-    if ( mouseX>=b6X && mouseX<=b6X+b6W && mouseY>=b6Y && mouseY<=b6Y+b6W) {
+  if ( mouseX>=b6X && mouseX<=b6X+b6W && mouseY>=b6Y && mouseY<=b6Y+b6W) {
     fill(blue);
     ellipse(b6X, b6Y, b6W, b6W);
   } else {
@@ -303,6 +303,7 @@ void mousePressed() {
   r4on=false;
   r5on=false;
   r6on=false;
+  r7on=false;
   if (mouseX>quitx && mouseX<quitx+quitwidth && mouseY>quity && mouseY<quity+quitheight) exit();
   //
   if (mouseX >=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height) {
@@ -334,5 +335,13 @@ void mousePressed() {
     r4on=true;
     r5on=true;
     r6on=true;
+  }
+  if ( mouseX>=b6X && mouseX<=b6X+b6W && mouseY>=b6Y && mouseY<=b6Y+b6W) {
+    r2on=true;
+    r3on=true;
+    r4on=true;
+    r5on=true;
+    r6on=true;
+    r7on=true;
   }
 }
