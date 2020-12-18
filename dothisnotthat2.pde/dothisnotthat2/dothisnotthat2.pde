@@ -5,10 +5,9 @@ Boolean rectOn=false, circleOn=false;
 color green=#05FF0F;
 
 void setup() {
-  fullScreen(); //fullScreen(), displayWidth & displayHeight, leads to ScreenChecker()
-  population(); //illustrates multiple lines of code
-  textSetup();
-}//End setup()
+  fullScreen(); 
+  population();
+}
 
 void draw() {
   background(green);
