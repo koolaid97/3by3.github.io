@@ -4,6 +4,7 @@ float tXx, tYy, Tsidex, TSIDEy;
 String title = "koolaid97";
 String title2= "click white space to reset, click the button in this rectangle and for every rectangle that appaers click the button inside it";
 String title3= "BOOYAKASHA";
+String title4= "WOOOOOOOOO";
 PFont titleFont;
 float ptDiameter, rectWidth, rectHeight;
 float p1X, p1Y, p2X, p2Y, p3X, p3Y, p4X, p4Y;
@@ -18,23 +19,29 @@ float mouthThick, mouthX1, mouthY1, mouthX2, mouthY2;
 boolean r2on=false, r3on=false, r4on = false, r5on = false, r6on=false, r7on=false, r8on=false, r9on=false;
 float r21, r22, r23;
 float b4x, b4y, b4d;
-PImage pic1, pic2;
+PImage pic1, pic2, pic3;
 float rectXPic1, rectYPic1, rectWidthPic1, rectHeightPic1;
 float picImageWidthRatio1, picImageHeightRatio1;
 float picX1, picY1, picWidth1, picHeight1;
 float rectXPic2, rectYPic2, rectWidthPic2, rectHeightPic2;
 float picImageWidthRatio2, picImageHeightRatio2;
 float picX2, picY2, picWidth2, picHeight2;
+float rectXPic3, rectYPic3, rectWidthPic3, rectHeightPic3;
+float picImageWidthRatio3, picImageHeightRatio3;
+float picX3, picY3, picWidth3, picHeight3;
 float b5X, b5Y, b5W, b5H;
 float p2r1, p2r2, p2r3, p2r4;
 float p2rr1, p2rr2, p2rr3, p2rr4;
 float b6X, b6Y, b6W;
 float t1, t2, t3, t4;
-
+float b7X, b7Y, b7W, b7H;
+float b8X, b8Y, b8W, b8H;
+float t5, t6, t7, t8;
 void setup() {
   fullScreen();
   pic1 = loadImage( "tmnt-computeranimated-2012.jpg");
   pic2 = loadImage("KuroshNow2.jpg");
+  pic3 = loadImage("outside.jpg");
   ptDiameter = width * 1 / 30;
   rectWidth = width*1/3;
   rectHeight = height*1/3;
@@ -103,6 +110,19 @@ void setup() {
   b6X= width*1/2;
   b6Y= height*1/4.2;
   b6W= width *0.5/9;
+  b7X= width*2.5/9;
+  b7Y =height*9/15;
+  b7W = width* 0.5/9;
+  b7H = height* 1/15;
+  b8X = width*2/3;
+  b8Y = height*5.5/9;
+  b8W = width *1/9;
+  b8H = height * 0.5/9;
+  t5  = width*2/3;
+  t6  = height*1/9;
+  t7  = width*1/3;
+  t8  = height*2/9;
+
 
 
   //
@@ -128,10 +148,17 @@ void setup() {
   picImageHeightRatio2 = 2208.0/2944.0; //Image height is shorter, thus <1
   picX2 = p9X;
   picY2 = p9Y;
-  picWidth2 = rectWidth * picImageWidthRatio1; //remains longer side, "*1"
-  picHeight2 = picWidth2 * picImageHeightRatio1; //becomes shorter side, "*<1"
+  picWidth2 = rectWidth * picImageWidthRatio2; //remains longer side, "*1"
+  picHeight2 = picWidth2 * picImageHeightRatio2; //becomes shorter side, "*<1"
   if (picHeight2 > rectHeight) println("Image #1 display issues"); //dimension might be 'cut-off'
   //
+  picImageWidthRatio3 = 2944.0/2944.0; //Image width is longer, thus 1
+  picImageHeightRatio3 = 1600.0/2944.0; //Image height is shorter, thus <1
+  picX3 = p7X;
+  picY3 = p7Y;
+  picWidth3 = rectWidth * picImageWidthRatio3; //remains longer side, "*1"
+  picHeight3 = picWidth3 * picImageHeightRatio3; //becomes shorter side, "*<1"
+  if (picHeight3 > rectHeight) println("Image #1 display issues"); //dimension might be 'cut-off'
 }
 
 void draw() {
@@ -248,6 +275,20 @@ void draw() {
     text(title3, t1, t2, t3, t4);
     textAlign (CENTER, CENTER);
   }
+  if (r8on == true)
+  {
+    image(pic3, picX3, picY3, picWidth3, picHeight3);
+  }  
+  //
+  if (r9on==true)
+  {
+    fill(reset);
+    fill(blue); //reset
+    titleFont = createFont ("Impact", 55);
+    textFont(titleFont);
+    text(title4, t5, t6, t7, t8);
+    textAlign (CENTER, CENTER);
+  }
   if ( mouseX>=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height) {
     fill(blue);
     rect(b1X, b1Y, b1Width, b1Height);
@@ -295,6 +336,22 @@ void draw() {
     fill(black);
     ellipse(b6X, b6Y, b6W, b6W);
   }
+  //
+  if ( mouseX>=b7X && mouseX<=b7X+b7W && mouseY>=b7Y && mouseY<=b7Y+b7H) {
+    fill(green);
+    rect(b7X, b7Y, b7W, b7H);
+  } else {
+    fill(black);
+    rect(b7X, b7Y, b7W, b7H);
+  }
+  //
+  if ( mouseX>=b8X && mouseX<=b8X+b8W && mouseY>=b8Y && mouseY<=b8Y+b8H) {
+    fill(green);
+    rect(b8X, b8Y, b8W, b8H);
+  } else {
+    fill(black);
+    rect(b8X, b8Y, b8W, b8H);
+  }
 }
 
 void mousePressed() {
@@ -304,6 +361,8 @@ void mousePressed() {
   r5on=false;
   r6on=false;
   r7on=false;
+  r8on=false;
+  r9on=false;
   if (mouseX>quitx && mouseX<quitx+quitwidth && mouseY>quity && mouseY<quity+quitheight) exit();
   //
   if (mouseX >=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height) {
@@ -343,5 +402,26 @@ void mousePressed() {
     r5on=true;
     r6on=true;
     r7on=true;
+  }
+  //
+  if ( mouseX>=b7X && mouseX<=b7X+b7W && mouseY>=b7Y && mouseY<=b7Y+b7H) {
+    r2on=true;
+    r3on=true;
+    r4on=true;
+    r5on=true;
+    r6on=true;
+    r7on=true;
+    r8on=true;
+  }
+  //
+  if ( mouseX>=b8X && mouseX<=b8X+b8W && mouseY>=b8Y && mouseY<=b8Y+b8H) {
+    r2on=true;
+    r3on=true;
+    r4on=true;
+    r5on=true;
+    r6on=true;
+    r7on=true;
+    r8on=true;
+    r9on=true;
   }
 }
