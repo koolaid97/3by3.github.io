@@ -1,6 +1,9 @@
 color green = #10FF05, buttonColor, white=255, black=0, blue=#0805FF, red=#FF2B05, reset, resetWhite;
 float tX, tY, Tside, TSIDE;
+float tXx, tYy, Tsidex, TSIDEy;
 String title = "koolaid97";
+String title2= "click white space to reset, click the button in this rectangle and for every rectangle that appaers click the button inside it";
+String title3= "BOOYAKASHA";
 PFont titleFont;
 float ptDiameter, rectWidth, rectHeight;
 float p1X, p1Y, p2X, p2Y, p3X, p3Y, p4X, p4Y;
@@ -12,7 +15,7 @@ float b2X, b2Y, b2Width, b2Height;
 float b3X, b3Y, b3Width, b3Height;
 float quitx, quity, quitheight, quitwidth;
 float mouthThick, mouthX1, mouthY1, mouthX2, mouthY2;
-boolean r2on=false, r3on=false, r4on = false, r5on = false, r6on=false;
+boolean r2on=false, r3on=false, r4on = false, r5on = false, r6on=false, r7on=false, r8on=false, r9on=false;
 float r21, r22, r23;
 float b4x, b4y, b4d;
 PImage pic1, pic2;
@@ -25,7 +28,8 @@ float picX2, picY2, picWidth2, picHeight2;
 float b5X, b5Y, b5W, b5H;
 float p2r1, p2r2, p2r3, p2r4;
 float p2rr1, p2rr2, p2rr3, p2rr4;
-float b6X, b6Y, b6W, b6H;
+float b6X, b6Y, b6W;
+float t1, t2, t3, t4;
 
 void setup() {
   fullScreen();
@@ -46,9 +50,9 @@ void setup() {
   p13Y = p14Y = p15Y = p16Y= height*3/3;
   //
   b1X = width * 2/9; 
-  b1Y = height * 2/9; 
+  b1Y = height * 2.5/9; 
   b1Width = width * 1/9;
-  b1Height = height * 1/9;
+  b1Height = height * 0.5/9;
   //
   b2X = width * 5/9; 
   b2Y = height * 5/9 ; 
@@ -85,14 +89,32 @@ void setup() {
   TSIDE = height * 3/15;
   //
   p2r1 = width * 1/2.5;
-  p2r2 = height * 1/12
-  p2r3 = 
-  p2r4
-  p2rr1
-  p2rr2
-  p2rr3
-  p2rr4
-  
+  p2r2 = height * 1/12;
+  p2r3 = width*1/15;
+  p2r4 = height*1/15;
+  p2rr1= width *1/1.8;
+  p2rr2= height*1/12;
+  p2rr3=width*1/15;
+  p2rr4=height*1/15;
+  b5X= width*1/8;
+  b5Y =height*14/15;
+  b5W = width* 1/8;
+  b5H = height* 1/15;
+  b6X= width*1/2;
+  b6Y= height*1/4.2;
+  b6W= width *0.5/9;
+
+
+  //
+  tXx= width*0;
+  tYy= height*0;
+  Tsidex= width*1/3;
+  TSIDEy= height*2/9;
+  t1= width*0;
+  t2= height*1/3;
+  t3= width*1/3;
+  t4= height*2/9;
+
 
   picImageWidthRatio1 = 700.0/700.0; //Image width is longer, thus 1
   picImageHeightRatio1 = 275.0/700.0; //Image height is shorter, thus <1
@@ -155,7 +177,13 @@ void draw() {
   fill(white);
   ellipse(b4x, b4y, b4d, b4d);
   rect(b3X, b3Y, b3Width, b3Height);
+
   //
+  fill(blue); //reset
+  titleFont = createFont ("Impact", 20);
+  textFont(titleFont);
+  text(title2, tXx, tYy, Tsidex, TSIDEy);
+  textAlign (CENTER, CENTER);
 
   if (mouseX>quitx && mouseX<quitx+quitwidth && mouseY>quity && mouseY<quity+quitheight) {
     buttonColor= red;
@@ -198,7 +226,28 @@ void draw() {
   {
     image(pic2, picX2, picY2, picWidth2, picHeight2);
   }
-
+  //
+  if (r6on == true)
+  {
+    fill(blue); 
+    rect(p2r1, p2r2, p2r3, p2r4); 
+    rect(p2rr1, p2rr2, p2rr3, p2rr4);
+    fill(reset);
+  }
+  //
+  if (r7on == true)
+  {    
+    fill(blue);
+    rect(p11X, p11Y, rectWidth, rectHeight);
+    fill(reset);
+    fill(black);
+    fill(reset);
+    fill(green); //reset
+    titleFont = createFont ("Impact", 55);
+    textFont(titleFont);
+    text(title3, t1, t2, t3, t4);
+    textAlign (CENTER, CENTER);
+  }
   if ( mouseX>=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height) {
     fill(blue);
     rect(b1X, b1Y, b1Width, b1Height);
@@ -230,6 +279,22 @@ void draw() {
     fill(black);
     rect(b3X, b3Y, b3Width, b3Height);
   }
+  //
+  if ( mouseX>=b5X && mouseX<=b5X+b5W && mouseY>=b5Y && mouseY<=b5Y+b5H) {
+    fill(blue);
+    rect(b5X, b5Y, b5W, b5H);
+  } else {
+    fill(black);
+    rect(b5X, b5Y, b5W, b5H);
+  }
+  //
+    if ( mouseX>=b6X && mouseX<=b6X+b6W && mouseY>=b6Y && mouseY<=b6Y+b6W) {
+    fill(blue);
+    ellipse(b6X, b6Y, b6W, b6W);
+  } else {
+    fill(black);
+    ellipse(b6X, b6Y, b6W, b6W);
+  }
 }
 
 void mousePressed() {
@@ -237,6 +302,7 @@ void mousePressed() {
   r3on=false;
   r4on=false;
   r5on=false;
+  r6on=false;
   if (mouseX>quitx && mouseX<quitx+quitwidth && mouseY>quity && mouseY<quity+quitheight) exit();
   //
   if (mouseX >=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height) {
@@ -260,5 +326,13 @@ void mousePressed() {
     r3on=true;
     r4on=true;
     r5on=true;
+  }
+  //
+  if ( mouseX>=b5X && mouseX<=b5X+b5W && mouseY>=b5Y && mouseY<=b5Y+b5H) {
+    r2on=true;
+    r3on=true;
+    r4on=true;
+    r5on=true;
+    r6on=true;
   }
 }
