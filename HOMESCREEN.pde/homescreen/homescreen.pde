@@ -22,7 +22,10 @@ float picX1, picY1, picWidth1, picHeight1;
 float rectXPic2, rectYPic2, rectWidthPic2, rectHeightPic2;
 float picImageWidthRatio2, picImageHeightRatio2;
 float picX2, picY2, picWidth2, picHeight2;
-
+float b5X, b5Y, b5W, b5H;
+float p2r1, p2r2, p2r3, p2r4;
+float p2rr1, p2rr2, p2rr3, p2rr4;
+float b6X, b6Y, b6W, b6H;
 
 void setup() {
   fullScreen();
@@ -81,7 +84,15 @@ void setup() {
   Tside = width*1/3;
   TSIDE = height * 3/15;
   //
-
+  p2r1 = width * 1/2.5;
+  p2r2 = height * 1/12
+  p2r3 = 
+  p2r4
+  p2rr1
+  p2rr2
+  p2rr3
+  p2rr4
+  
 
   picImageWidthRatio1 = 700.0/700.0; //Image width is longer, thus 1
   picImageHeightRatio1 = 275.0/700.0; //Image height is shorter, thus <1
