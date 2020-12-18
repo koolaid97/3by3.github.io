@@ -12,17 +12,22 @@ float b2X, b2Y, b2Width, b2Height;
 float b3X, b3Y, b3Width, b3Height;
 float quitx, quity, quitheight, quitwidth;
 float mouthThick, mouthX1, mouthY1, mouthX2, mouthY2;
-boolean r2on=false, r3on=false, r4on = false;
+boolean r2on=false, r3on=false, r4on = false, r5on = false, r6on=false;
 float r21, r22, r23;
 float b4x, b4y, b4d;
 PImage pic1, pic2;
 float rectXPic1, rectYPic1, rectWidthPic1, rectHeightPic1;
 float picImageWidthRatio1, picImageHeightRatio1;
 float picX1, picY1, picWidth1, picHeight1;
+float rectXPic2, rectYPic2, rectWidthPic2, rectHeightPic2;
+float picImageWidthRatio2, picImageHeightRatio2;
+float picX2, picY2, picWidth2, picHeight2;
+
 
 void setup() {
   fullScreen();
   pic1 = loadImage( "tmnt-computeranimated-2012.jpg");
+  pic2 = loadImage("KuroshNow2.jpg");
   ptDiameter = width * 1 / 30;
   rectWidth = width*1/3;
   rectHeight = height*1/3;
@@ -85,7 +90,14 @@ void setup() {
   picWidth1 = rectWidth * picImageWidthRatio1; //remains longer side, "*1"
   picHeight1 = picWidth1 * picImageHeightRatio1; //becomes shorter side, "*<1"
   if (picHeight1 > rectHeight) println("Image #1 display issues"); //dimension might be 'cut-off'
-
+  //
+  picImageWidthRatio2 = 2944.0/2944.0; //Image width is longer, thus 1
+  picImageHeightRatio2 = 2208.0/2944.0; //Image height is shorter, thus <1
+  picX2 = p9X;
+  picY2 = p9Y;
+  picWidth2 = rectWidth * picImageWidthRatio1; //remains longer side, "*1"
+  picHeight2 = picWidth2 * picImageHeightRatio1; //becomes shorter side, "*<1"
+  if (picHeight2 > rectHeight) println("Image #1 display issues"); //dimension might be 'cut-off'
   //
 }
 
@@ -131,6 +143,7 @@ void draw() {
   ellipse(p16X, p16Y, ptDiameter, ptDiameter);
   fill(white);
   ellipse(b4x, b4y, b4d, b4d);
+  rect(b3X, b3Y, b3Width, b3Height);
   //
 
   if (mouseX>quitx && mouseX<quitx+quitwidth && mouseY>quity && mouseY<quity+quitheight) {
@@ -138,11 +151,11 @@ void draw() {
   } else { 
     buttonColor=black;
   }
-{  
-  fill(buttonColor);
-  rect(quitx, quity, quitwidth, quitheight);
-  fill(resetWhite);  
-}
+  {  
+    fill(buttonColor);
+    rect(quitx, quity, quitwidth, quitheight);
+    fill(resetWhite);
+  }
   if (r2on == true)
   {
     fill(green); 
@@ -163,13 +176,16 @@ void draw() {
     rect(p11X, p11Y, rectWidth, rectHeight);
     fill(reset);
     fill(black);
-    rect(b3X, b3Y, b3Width, b3Height);
     fill(reset);
     fill(blue); //reset
     titleFont = createFont ("Impact", 55);
     textFont(titleFont);
     text(title, tX, tY, Tside, TSIDE);
     textAlign (CENTER, CENTER);
+  }
+  if (r5on == true)
+  {
+    image(pic2, picX2, picY2, picWidth2, picHeight2);
   }
 
   if ( mouseX>=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height) {
@@ -195,12 +211,21 @@ void draw() {
     fill(black);
     rect(b2X, b2Y, b2Width, b2Height);
   }
+  //
+  if ( mouseX>=b3X && mouseX<=b3X+b3Width && mouseY>=b3Y && mouseY<=b3Y+b3Height) {
+    fill(blue);
+    rect(b3X, b3Y, b3Width, b3Height);
+  } else {
+    fill(black);
+    rect(b3X, b3Y, b3Width, b3Height);
+  }
 }
 
 void mousePressed() {
   r2on=false;
   r3on=false;
   r4on=false;
+  r5on=false;
   if (mouseX>quitx && mouseX<quitx+quitwidth && mouseY>quity && mouseY<quity+quitheight) exit();
   //
   if (mouseX >=b1X && mouseX<=b1X+b1Width && mouseY>=b1Y && mouseY<=b1Y+b1Height) {
@@ -216,5 +241,13 @@ void mousePressed() {
     r2on=true;
     r3on=true;
     r4on=true;
+  }
+
+  //
+  if ( mouseX>=b3X && mouseX<=b3X+b3Width && mouseY>=b3Y && mouseY<=b3Y+b3Height) {
+    r2on=true;
+    r3on=true;
+    r4on=true;
+    r5on=true;
   }
 }
